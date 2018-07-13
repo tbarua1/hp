@@ -1,5 +1,5 @@
 import speech_recognition as sr
-import pyaudio
+
 # get audio from the microphone
 r = sr.Recognizer()
 with sr.Microphone() as source:
