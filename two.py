@@ -1,31 +1,24 @@
-import cv2
+import random
 import numpy as np
+import matplotlib.pyplot as plt
 
-cap = cv2.VideoCapture(0)
+# Probability to move up or down
+prob = [0.05, 0.95]
 
-while(1):
+# statically defining the starting position
+start = 2
+positions = [start]
 
-    # Take each frame
-    _, frame = cap.read()
+# creating the random points
+rr = np.random.random(1000)
+downp = rr < prob[0]
+upp = rr > prob[1]
 
-    # Convert BGR to HSV
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+for idownp, iupp in zip(downp, upp):
+    down = idownp and positions[-1] > 1
+    up = iupp and positions[-1] < 4
+    positions.append(positions[-1] - down + up)
 
-    # define range of blue color in HSV
-    lower_blue = np.array([110,50,50])
-    upper_blue = np.array([130,255,255])
-
-    # Threshold the HSV image to get only blue colors
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
-
-    # Bitwise-AND mask and original image
-    res = cv2.bitwise_and(frame,frame, mask= mask)
-
-    cv2.imshow('frame',frame)
-    cv2.imshow('mask',mask)
-    cv2.imshow('res',res)
-    k = cv2.waitKey(5) & 0xFF
-    if k == 27:
-        break
-
-cv2.destroyAllWindows()
+# plotting down the graph of the random walk in 1D
+plt.plot(positions)
+plt.show()
