@@ -1,2 +1,3 @@
 https://pythonprogramming.net/haar-cascade-object-detection-python-opencv-tutorial/
 https://github.com/informramiz/opencv-face-recognition-python
+python -m nltk.downloader all
