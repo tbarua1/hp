@@ -3,3 +3,4 @@ https://github.com/informramiz/opencv-face-recognition-python
 python -m nltk.downloader all
 
 https://github.com/ageitgey/face_recognition
+https://pypi.org/project/face_recognition/
